@@ -1,0 +1,3 @@
+aaa
+bb <%= value %>
+c

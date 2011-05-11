@@ -1,0 +1,14 @@
+{
+    "name": "mai",
+    "description": "send text/html e-mail with mail template management feature",
+    "version": "0.0.1",
+    "author": "Kazuyuki Honda <hakobera@gmail.com>",
+    "dependencies": {
+        "emailjs": "0.1.8",
+        "ejs": "0.4.1"
+    },
+    "keywords": ["mail"],
+    "repository": "git://github.com/hakobera/mai",
+    "main": "index",
+    "engines": { "node": ">= 0.4.2 < 0.5.0" }
+}
