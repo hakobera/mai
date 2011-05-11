@@ -25,12 +25,12 @@ Via [emailjs](https://github.com/eleith/emailjs):
   * emails are queued and the queue is sent asynchronously
   * supports sending html emails and emails with multiple attachments (MIME)
 
-## Emaple usable
+## Emaple
 
 Prepare a email template text file named 'hello.txt' like below, 
 and put it in the directory named 'templates'.
 
-    Hello, <%= user %>!
+    Hello, <%= value %>!
 
 Followings is the code using above template file.
 
@@ -53,7 +53,7 @@ Followings is the code using above template file.
         subject: 'Hello Subject',
         templateName: 'hello', // templateName is a filename without extension
         params: {
-            user: 'YOU'
+            value: 'world'
         },
         callback: function(err, message) {
             if (err) {
@@ -63,6 +63,10 @@ Followings is the code using above template file.
             }
         }
     });
+
+For all, the variables in the template is replaced given value and you can see the mail body text is
+
+	Hello, world!
 
 ## License 
 
