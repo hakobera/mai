@@ -108,6 +108,47 @@ module.exports = {
         mai.send(sendInfo);
     },
 
+    "send embeded with attachment": function() {
+        var conf = merge(baseConf, {
+                templatePath: __dirname + '/templates'
+            }),
+            mai = new Mai(conf);
+        
+        var sendInfo = {
+            from: 'from@from.com',
+            to: 'to1@to.com',
+            cc: 'cc1@cc.com, cc2@cc.com',
+            bcc: 'bcc1@bcc.com, bcc2@bcc.com',
+            subject: 'Mail Subject',
+            templateName: 'embeded',
+            params: {
+                value: 'ABCDE'
+            },
+            attachments: [
+                { path: __dirname + '/attachment/attachment1.txt', type: 'text/plain', name: 'rename1.txt' },
+                { path: __dirname + '/attachment/attachment2.txt', type: 'text/plain', name: 'rename2.txt' }
+            ],
+            callback: function(err, message) {
+                assert.eql(message.header.from, sendInfo.from);
+                assert.eql(message.header.to, sendInfo.to);
+                assert.eql(message.header.cc, sendInfo.cc);
+                assert.eql(message.header.bcc, sendInfo.bcc);
+                assert.eql(message.header.subject, sendInfo.subject);
+                assert.eql(message.text, 'aaa\nbb ABCDE\nc');
+                
+                assert.eql(message.attachments.length, 2);
+                
+                var attach1 = message.attachments[0],
+                    attach2 = message.attachments[1];
+                
+                assert.eql(attach1, sendInfo.attachments[0]);
+                assert.eql(attach2, sendInfo.attachments[1]);
+            }
+        };
+        
+        mai.send(sendInfo);
+    },
+
     "ERR: tempaltePath is empty": function() {
         try {
             var mai = new Mai(baseConf);
