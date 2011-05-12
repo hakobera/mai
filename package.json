@@ -1,7 +1,7 @@
 {
     "name": "mai",
     "description": "send text/html e-mail with mail template management feature",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Kazuyuki Honda <hakobera@gmail.com>",
     "dependencies": {
         "emailjs": "0.1.8",

@@ -24,7 +24,7 @@ var merge = function(a, b) {
 var baseConf = {
     encoding: 'utf-8',
     hostname: 'localhost',
-    port: '',
+    port: 25,
     ssl: false,
     tls: false,
     username: "",
@@ -42,11 +42,14 @@ module.exports = {
             mai = new Mai(conf),
             smtp;
         
-        smtp = mai.smtpClient.smtp;
+        smtp = mai.smtpConf;
         assert.eql(smtp.host, 'localhost');
         assert.eql(smtp.port, 25);
         assert.eql(smtp.ssl, false);
         assert.eql(smtp.tls, false);
+        assert.eql(smtp.username, "");
+        assert.eql(smtp.password, "");
+        assert.eql(smtp.timeout, 5000);
         assert.eql(smtp.domain, 'domainname');
         
         assert.eql(mai.templates['text_only'], 'Line1\nLine2\nLine3\nLine4\nLine5');
